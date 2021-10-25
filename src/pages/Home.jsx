@@ -10,6 +10,7 @@ class Home extends Component {
       categories: [],
       products: [],
       inputValue: '',
+      categoryId: '',
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -24,6 +25,13 @@ class Home extends Component {
     });
   }
 
+  filterByCategory = async (event) => {
+    await this.setState({
+      categoryId: event.target.name,
+    });
+    this.requiredProducts();
+  }
+
   async requiredCategories() {
     const response = await getCategories();
     this.setState({
@@ -32,8 +40,8 @@ class Home extends Component {
   }
 
   async requiredProducts() {
-    const { inputValue } = this.state;
-    const response = await getProductsFromCategoryAndQuery('bola', inputValue);
+    const { inputValue, categoryId } = this.state;
+    const response = await getProductsFromCategoryAndQuery(categoryId, inputValue);
     this.setState({
       products: response.results,
     });
@@ -47,15 +55,14 @@ class Home extends Component {
           <ul>
             {categories.map((category) => (
               <li key={ category.id }>
-                <label htmlFor={ category.name }>
-                  <input
-                    name="category"
-                    data-testid="category"
-                    id={ category.id }
-                    type="radio"
-                  />
-                  {category.name}
-                </label>
+                <button
+                  data-testid="category"
+                  name={ category.id }
+                  type="button"
+                  onClick={ this.filterByCategory }
+                >
+                  { category.name }
+                </button>
               </li>
             ))}
           </ul>
@@ -69,6 +76,7 @@ class Home extends Component {
                 value={ inputValue }
                 id="input"
                 type="text"
+                name="inputValue"
               />
             </label>
             <button

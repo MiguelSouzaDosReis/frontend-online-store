@@ -5,6 +5,9 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <label htmlFor="input">
+          <input id="input" type="text" />
+        </label>
         <Link to="/cart" data-testid="shopping-cart-button">Carrinho de Compras</Link>
         <p
           data-testid="home-initial-message"

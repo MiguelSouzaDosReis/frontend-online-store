@@ -13,6 +13,7 @@ class Home extends Component {
       products: [],
       inputValue: '',
       categoryId: '',
+      inicialPage: true,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -24,6 +25,7 @@ class Home extends Component {
   handleChange = (event) => {
     this.setState({
       inputValue: event.target.value,
+      inicialPage: false,
     });
   }
 
@@ -33,15 +35,17 @@ class Home extends Component {
     }, this.requiredProducts);
   }
 
-  conditionRenderProducts = () => {
-    const { products } = this.state;
-    if (products.length === 0) {
+  conditionRenderProducts = (inicialPage, products) => {
+    if (inicialPage) {
       return (
-        <p
-          data-testid="home-initial-message"
-        >
+        <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+      );
+    }
+    if (products.length === 0) {
+      return (
+        <p>Nenhum produto foi encontrado</p>
       );
     }
     return (
@@ -65,11 +69,12 @@ class Home extends Component {
     const response = await getProductsFromCategoryAndQuery(categoryId, inputValue);
     this.setState({
       products: response.results,
+      inicialPage: false,
     });
   }
 
   render() {
-    const { categories, inputValue } = this.state;
+    const { categories, inputValue, products, inicialPage } = this.state;
     return (
       <div>
         <aside>
@@ -107,7 +112,7 @@ class Home extends Component {
             </button>
           </form>
           <Link to="/cart" data-testid="shopping-cart-button">Carrinho de Compras</Link>
-          { this.conditionRenderProducts() }
+          { this.conditionRenderProducts(inicialPage, products) }
         </div>
       </div>
 

@@ -13,7 +13,6 @@ function App() {
         <Route
           path="/product/:categoryId/:inputValue"
           component={ ProductDetails }
-          // render={ (props) => <ProductDetails { ...props } /> }
         />
       </Switch>
     </BrowserRouter>

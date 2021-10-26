@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 class CardProduct extends Component {
   render() {
     const { card } = this.props;
-    // console.log(card);
 
     const priceItem = card.price
       .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });

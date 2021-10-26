@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class ProductDetails extends Component {
@@ -16,7 +17,6 @@ class ProductDetails extends Component {
     const { match: { params: { categoryId, inputValue } } } = this.props;
     const response = await getProductsFromCategoryAndQuery(categoryId, '');
     const filterProduct = (response.results).find((element) => element.id === inputValue);
-    console.log(filterProduct);
     this.setState({
       productDetails: filterProduct,
     });
@@ -24,7 +24,6 @@ class ProductDetails extends Component {
 
   render() {
     const { productDetails, productDetails: { attributes } } = this.state;
-    console.log(productDetails);
     return (
       <section>
         <h3 data-testid="product-detail-name">{ productDetails.title }</h3>
@@ -42,5 +41,9 @@ class ProductDetails extends Component {
     );
   }
 }
+
+ProductDetails.propTypes = {
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default ProductDetails;

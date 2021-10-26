@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Categories from '../components/Categories';
+import CardProduct from '../components/CardProduct';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends Component {
@@ -53,19 +55,11 @@ class Home extends Component {
         <aside>
           <ul>
             {categories.map((category) => (
-              <li key={ category.id }>
-                <label htmlFor={ category.id }>
-                  <input
-                    data-testid="category"
-                    id={ category.id }
-                    name="category"
-                    value={ category.id }
-                    type="radio"
-                    onClick={ this.filterByCategory }
-                  />
-                  { category.name }
-                </label>
-              </li>
+              <Categories
+                key={ category.id }
+                category={ category }
+                filterByCategory={ this.filterByCategory }
+              />
             ))}
           </ul>
         </aside>
@@ -100,15 +94,7 @@ class Home extends Component {
           </p>
           <div>
             {products.map((card) => (
-              <div data-testid="product" key={ card.id }>
-                <h3>{card.title}</h3>
-                <img width="100" src={ card.thumbnail } alt={ card.thumbnail_id } />
-                <p>
-                  Preço:
-                  {' '}
-                  { card.price }
-                </p>
-              </div>
+              <CardProduct key={ card.id } card={ card } />
             ))}
           </div>
         </div>

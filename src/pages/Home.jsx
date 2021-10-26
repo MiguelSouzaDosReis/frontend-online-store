@@ -33,6 +33,26 @@ class Home extends Component {
     }, this.requiredProducts);
   }
 
+  conditionRenderProducts = () => {
+    const { products } = this.state;
+    if (products.length === 0) {
+      return (
+        <p
+          data-testid="home-initial-message"
+        >
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </p>
+      );
+    }
+    return (
+      <div>
+        {products.map((card) => (
+          <CardProduct key={ card.id } card={ card } />
+        ))}
+      </div>
+    );
+  }
+
   async requiredCategories() {
     const response = await getCategories();
     this.setState({
@@ -49,7 +69,7 @@ class Home extends Component {
   }
 
   render() {
-    const { categories, inputValue, products } = this.state;
+    const { categories, inputValue } = this.state;
     return (
       <div>
         <aside>
@@ -87,16 +107,7 @@ class Home extends Component {
             </button>
           </form>
           <Link to="/cart" data-testid="shopping-cart-button">Carrinho de Compras</Link>
-          <p
-            data-testid="home-initial-message"
-          >
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-          <div>
-            {products.map((card) => (
-              <CardProduct key={ card.id } card={ card } />
-            ))}
-          </div>
+          { this.conditionRenderProducts() }
         </div>
       </div>
 

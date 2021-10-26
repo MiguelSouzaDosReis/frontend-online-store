@@ -25,11 +25,10 @@ class Home extends Component {
     });
   }
 
-  filterByCategory = async (event) => {
-    await this.setState({
-      categoryId: event.target.name,
-    });
-    this.requiredProducts();
+  filterByCategory = (event) => {
+    this.setState({
+      categoryId: event.target.value,
+    }, this.requiredProducts);
   }
 
   async requiredCategories() {
@@ -55,14 +54,17 @@ class Home extends Component {
           <ul>
             {categories.map((category) => (
               <li key={ category.id }>
-                <button
-                  data-testid="category"
-                  name={ category.id }
-                  type="button"
-                  onClick={ this.filterByCategory }
-                >
+                <label htmlFor={ category.id }>
+                  <input
+                    data-testid="category"
+                    id={ category.id }
+                    name="category"
+                    value={ category.id }
+                    type="radio"
+                    onClick={ this.filterByCategory }
+                  />
                   { category.name }
-                </button>
+                </label>
               </li>
             ))}
           </ul>

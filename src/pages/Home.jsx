@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Categories from '../components/Categories';
+import CardProduct from '../components/CardProduct';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends Component {
@@ -11,6 +13,7 @@ class Home extends Component {
       products: [],
       inputValue: '',
       categoryId: '',
+      inicialPage: true,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -22,14 +25,36 @@ class Home extends Component {
   handleChange = (event) => {
     this.setState({
       inputValue: event.target.value,
+      inicialPage: false,
     });
   }
 
-  filterByCategory = async (event) => {
-    await this.setState({
-      categoryId: event.target.name,
-    });
-    this.requiredProducts();
+  filterByCategory = (event) => {
+    this.setState({
+      categoryId: event.target.value,
+    }, this.requiredProducts);
+  }
+
+  conditionRenderProducts = (inicialPage, products) => {
+    if (inicialPage) {
+      return (
+        <p data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </p>
+      );
+    }
+    if (products.length === 0) {
+      return (
+        <p>Nenhum produto foi encontrado</p>
+      );
+    }
+    return (
+      <div>
+        {products.map((card) => (
+          <CardProduct key={ card.id } card={ card } />
+        ))}
+      </div>
+    );
   }
 
   async requiredCategories() {
@@ -44,26 +69,22 @@ class Home extends Component {
     const response = await getProductsFromCategoryAndQuery(categoryId, inputValue);
     this.setState({
       products: response.results,
+      inicialPage: false,
     });
   }
 
   render() {
-    const { categories, inputValue, products } = this.state;
+    const { categories, inputValue, products, inicialPage } = this.state;
     return (
       <div>
         <aside>
           <ul>
             {categories.map((category) => (
-              <li key={ category.id }>
-                <button
-                  data-testid="category"
-                  name={ category.id }
-                  type="button"
-                  onClick={ this.filterByCategory }
-                >
-                  { category.name }
-                </button>
-              </li>
+              <Categories
+                key={ category.id }
+                category={ category }
+                filterByCategory={ this.filterByCategory }
+              />
             ))}
           </ul>
         </aside>
@@ -91,24 +112,7 @@ class Home extends Component {
             </button>
           </form>
           <Link to="/cart" data-testid="shopping-cart-button">Carrinho de Compras</Link>
-          <p
-            data-testid="home-initial-message"
-          >
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-          <div>
-            {products.map((card) => (
-              <div data-testid="product" key={ card.id }>
-                <h3>{card.title}</h3>
-                <img width="100" src={ card.thumbnail } alt={ card.thumbnail_id } />
-                <p>
-                  Preço:
-                  {' '}
-                  { card.price }
-                </p>
-              </div>
-            ))}
-          </div>
+          { this.conditionRenderProducts(inicialPage, products) }
         </div>
       </div>
 

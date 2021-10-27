@@ -14,6 +14,10 @@ class ProductDetails extends Component {
 
   componentDidMount() {
     this.requiredProducts();
+    this.funcSet();
+  }
+
+  funcSet() {
     const { location: { state } } = this.props;
     this.setState({
       cartList: [...state],
@@ -58,8 +62,10 @@ class ProductDetails extends Component {
   }
 }
 
-ProductDetails.propTypes = {
+ProductDetails.propTypes = PropTypes.shape({
+  location: PropTypes.objectOf,
+  state: PropTypes.objectOf,
   match: PropTypes.objectOf(PropTypes.any).isRequired,
-};
+}).isRequired;
 
 export default ProductDetails;

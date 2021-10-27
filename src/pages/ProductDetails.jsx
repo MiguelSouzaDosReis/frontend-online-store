@@ -6,11 +6,31 @@ import { getProductsFromCategoryAndQuery } from '../services/api';
 class ProductDetails extends Component {
   constructor() {
     super();
-    this.state = { productDetails: {} };
+    this.state = {
+      productDetails: {},
+      cartList: [],
+    };
   }
 
   componentDidMount() {
     this.requiredProducts();
+    this.funcSet();
+  }
+
+  handlePurchaseClick = (event) => {
+    const { productDetails, cartList } = this.state;
+    const { id } = event.target;
+    const filterClick = [productDetails].filter((product) => product.id === id);
+    this.setState({
+      cartList: [...cartList, ...filterClick],
+    });
+  }
+
+  funcSet() {
+    const { location: { state } } = this.props;
+    this.setState({
+      cartList: [...state],
+    });
   }
 
   async requiredProducts() {
@@ -23,7 +43,8 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { productDetails, productDetails: { attributes } } = this.state;
+    const { productDetails, productDetails: { attributes }, cartList } = this.state;
+
     return (
       <section>
         <h3 data-testid="product-detail-name">{ productDetails.title }</h3>
@@ -36,14 +57,33 @@ class ProductDetails extends Component {
             </li>
           ))}
         </ul>
-        <Link data-testid="shopping-cart-button" to="/cart">Carrinho</Link>
+        <Link
+          to={ { pathname: '/cart', state: cartList } }
+        >
+          <button
+            data-testid="shopping-cart-button"
+            type="button"
+          >
+            Carrinho
+          </button>
+        </Link>
+        <button
+          id={ productDetails.id }
+          type="button"
+          onClick={ this.handlePurchaseClick }
+          data-testid="product-detail-add-to-cart"
+        >
+          Adicionar Item
+        </button>
       </section>
     );
   }
 }
 
-ProductDetails.propTypes = {
+ProductDetails.propTypes = PropTypes.shape({
+  location: PropTypes.objectOf,
+  state: PropTypes.objectOf,
   match: PropTypes.objectOf(PropTypes.any).isRequired,
-};
+}).isRequired;
 
 export default ProductDetails;

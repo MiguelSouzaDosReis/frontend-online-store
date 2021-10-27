@@ -14,6 +14,7 @@ class Home extends Component {
       inputValue: '',
       categoryId: '',
       inicialPage: true,
+      cartList: [],
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -34,7 +35,18 @@ class Home extends Component {
     }, this.requiredProducts);
   }
 
+  handlePurchaseClick = (event) => {
+    const { products, cartList } = this.state;
+    const { id } = event.target;
+    const filterClick = products.filter((product) => product.id === id);
+    this.setState({
+      cartList: [...cartList, ...filterClick],
+    });
+  }
+
   conditionRenderProducts = (inicialPage, products) => {
+    const { cartList } = this.state;
+
     if (inicialPage) {
       return (
         <p data-testid="home-initial-message">
@@ -50,7 +62,12 @@ class Home extends Component {
     return (
       <div>
         {products.map((card) => (
-          <CardProduct key={ card.id } card={ card } />
+          <CardProduct
+            key={ card.id }
+            card={ card }
+            handlePurchaseClick={ this.handlePurchaseClick }
+            cartList={ cartList }
+          />
         ))}
       </div>
     );
@@ -73,7 +90,7 @@ class Home extends Component {
   }
 
   render() {
-    const { categories, inputValue, products, inicialPage } = this.state;
+    const { categories, inputValue, products, inicialPage, cartList } = this.state;
     return (
       <div>
         <aside>
@@ -110,7 +127,16 @@ class Home extends Component {
               Buscar
             </button>
           </form>
-          <Link to="/cart" data-testid="shopping-cart-button">Carrinho de Compras</Link>
+          <Link
+            to={ { pathname: '/cart', state: cartList } }
+          >
+            <button
+              data-testid="shopping-cart-button"
+              type="button"
+            >
+              Carrinho
+            </button>
+          </Link>
           { this.conditionRenderProducts(inicialPage, products) }
         </div>
       </div>

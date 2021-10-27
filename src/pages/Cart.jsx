@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import CartItem from '../components/CartItem';
 
 class Cart extends Component {
   conditionRenderCart = () => {
@@ -13,19 +14,12 @@ class Cart extends Component {
 
     return (
       state && state.map((product) => (
-        <div key={ product.id }>
-          <p data-testid="shopping-cart-product-name">{product.title}</p>
-          <p>{ product.id }</p>
-          <img src={ product.thumbnail } alt={ product.title } />
-          <p>{ product.price }</p>
-          <p data-testid="shopping-cart-product-quantity">1</p>
-        </div>
+        <CartItem
+          key={ product.id }
+          product={ product }
+        />
       ))
     );
-  }
-
-  backButton = (event) => {
-    event.preventDefault();
   }
 
   render() {

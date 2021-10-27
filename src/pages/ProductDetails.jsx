@@ -17,6 +17,15 @@ class ProductDetails extends Component {
     this.funcSet();
   }
 
+  handlePurchaseClick = (event) => {
+    const { productDetails, cartList } = this.state;
+    const { id } = event.target;
+    const filterClick = [productDetails].filter((product) => product.id === id);
+    this.setState({
+      cartList: [...cartList, ...filterClick],
+    });
+  }
+
   funcSet() {
     const { location: { state } } = this.props;
     this.setState({
@@ -35,6 +44,7 @@ class ProductDetails extends Component {
 
   render() {
     const { productDetails, productDetails: { attributes }, cartList } = this.state;
+
     return (
       <section>
         <h3 data-testid="product-detail-name">{ productDetails.title }</h3>
@@ -57,6 +67,14 @@ class ProductDetails extends Component {
             Carrinho
           </button>
         </Link>
+        <button
+          id={ productDetails.id }
+          type="button"
+          onClick={ this.handlePurchaseClick }
+          data-testid="product-detail-add-to-cart"
+        >
+          Adicionar Item
+        </button>
       </section>
     );
   }

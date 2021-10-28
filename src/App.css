@@ -1,42 +1,109 @@
-.App {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: auto;
+}
+
+.body {
+  display: flex;
+}
+
+.aside {
+  background-color: cadetblue;
+  height: 630px;
+  margin-top: 20px;
+  padding: 3px;
+  width: 400px;
+}
+
+li {
+  list-style-type: none;
+  margin-top: 1px;
+  padding: 0.2px;
+}
+
+.Search-box {
+  border: solid 2px cadetblue;
+  border-radius: 10px;
+  height: 630px;
+  margin: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.input-search {
+  border-radius: 20px;
+  margin-left: 170px;
+  margin-top: 20px;
+  padding: 5px;
+  width: 60%;
+}
+
+.search-button {
+  background: cadetblue;
+  border: none;
+  border-radius: 0 7px 7px 0;
+  cursor: pointer;
+  font-weight: 777;
+  height: 32px;
+  margin-left: 10px;
+  width: 70px;
+}
+
+.cart-icon-link {
+  color: cadetblue;
+  margin-left: 50px;
+  margin-top: 40px;
+}
+
+.text-home {
+  margin-top: 20px;
+}
+
+.product-card {
+  border: 1px solid black;
+  display: inline-block;
+  flex-wrap: wrap;
+  font-size: 13px;
+  height: 185px;
+  margin-top: 5px;
+  overflow-x: auto;
+  width: 220px;
+}
+
+.add-item-button {
+  margin-top: 8px;
+}
+
+.empty-cart-div {
+  margin-top: 50px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* area do carrinho com itens */
+.cart-itens-div1 {
+  margin: auto;
+  width: 40%;
 }
 
-@media ( prefers-reduced-motion : no-preference ) {
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-
+.cart-itens-div {
+  border: 1px solid cadetblue;
+  display: inline-flex;
+  margin: auto;
+  margin-left: 100px;
+  width: 80%;
 }
 
-.App-header {
-  align-items: center;
-  background-color: #282c34;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  justify-content: center;
-  min-height: 100vh;
+img {
+  width: 100px;
 }
 
-.App-link {
-  color: #61dafb;
+.quantity {
+  margin: 40px 5px;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+.increase-button, .decrease-button, h1 {
+  height: 20px;
+  margin: auto;
 }

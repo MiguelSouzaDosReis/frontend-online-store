@@ -47,9 +47,13 @@ class ProductDetails extends Component {
     const { productDetails, productDetails: { attributes }, cartList } = this.state;
 
     return (
-      <section>
+      <section className="cart-item-div">
         <h3 data-testid="product-detail-name">{ productDetails.title }</h3>
-        <img src={ productDetails.thumbnail } alt={ productDetails.title } />
+        <img
+          className="img-cart-product"
+          src={ productDetails.thumbnail }
+          alt={ productDetails.title }
+        />
         <p>{ productDetails.price }</p>
         <ul>
           { attributes && attributes.map((product, index) => (

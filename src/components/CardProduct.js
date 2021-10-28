@@ -10,7 +10,7 @@ class CardProduct extends Component {
     // formatação de preço ex( R$: 00,00 );
 
     return (
-      <div data-testid="product" key={ card.id }>
+      <div className="product-card" data-testid="product" key={ card.id }>
         <Link
           data-testid="product-detail-link"
           to={ { pathname: `/product/${card.category_id}/${card.id}`, state: cartList } }
@@ -24,6 +24,7 @@ class CardProduct extends Component {
           </p>
         </Link>
         <button
+          className="add-item-button"
           id={ card.id }
           type="button"
           onClick={ handlePurchaseClick }

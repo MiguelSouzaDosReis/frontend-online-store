@@ -59,3 +59,51 @@ li {
 .text-home {
   margin-top: 20px;
 }
+
+.product-card {
+  border: 1px solid black;
+  display: inline-block;
+  flex-wrap: wrap;
+  font-size: 13px;
+  height: 185px;
+  margin-top: 5px;
+  overflow-x: auto;
+  width: 220px;
+}
+
+.add-item-button {
+  margin-top: 8px;
+}
+
+.empty-cart-div {
+  margin-top: 50px;
+  text-align: center;
+}
+
+/* area do carrinho com itens */
+.cart-item-div {
+  border: 1px solid cadetblue;
+  width: 80%;
+}
+
+.cart-itens-div {
+  border: 1px solid cadetblue;
+  display: inline-flex;
+  margin: auto;
+  margin-left: 100px;
+  width: 80%;
+}
+
+img {
+  width: 100px;
+}
+
+.quantity {
+  margin: 40px 5px;
+  text-align: center;
+}
+
+.increase-button, .decrease-button, h1 {
+  height: 20px;
+  margin: auto;
+}

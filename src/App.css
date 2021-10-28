@@ -81,9 +81,9 @@ li {
 }
 
 /* area do carrinho com itens */
-.cart-item-div {
-  border: 1px solid cadetblue;
-  width: 80%;
+.cart-itens-div1 {
+  margin: auto;
+  width: 40%;
 }
 
 .cart-itens-div {

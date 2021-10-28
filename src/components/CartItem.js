@@ -42,7 +42,7 @@ class CartItem extends Component {
         </button>
         <div className="quantity">
           <span>Quantidade</span>
-          <h2 size="20px" data-testid="shopping-cart-product-quantity">{ count }</h2>
+          <h2 data-testid="shopping-cart-product-quantity">{ count }</h2>
         </div>
         <button
           className="increase-button"
@@ -52,7 +52,10 @@ class CartItem extends Component {
         >
           +
         </button>
-        <h1>{ product.price }</h1>
+        <h1>
+          R$
+          { product.price }
+        </h1>
       </div>
     );
   }

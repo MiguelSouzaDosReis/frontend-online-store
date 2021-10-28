@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa';
 import Categories from '../components/Categories';
 import CardProduct from '../components/CardProduct';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
@@ -49,7 +50,7 @@ class Home extends Component {
 
     if (inicialPage) {
       return (
-        <p data-testid="home-initial-message">
+        <p className="text-home" data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
       );
@@ -92,8 +93,8 @@ class Home extends Component {
   render() {
     const { categories, inputValue, products, inicialPage, cartList } = this.state;
     return (
-      <div>
-        <aside>
+      <div className="body">
+        <aside className="aside">
           <ul>
             {categories.map((category) => (
               <Categories
@@ -104,10 +105,11 @@ class Home extends Component {
             ))}
           </ul>
         </aside>
-        <div>
+        <div className="Search-box">
           <form action="">
-            <label htmlFor="input">
+            <label className="divbusca" htmlFor="input">
               <input
+                className="input-search"
                 data-testid="query-input"
                 onChange={ this.handleChange }
                 value={ inputValue }
@@ -117,6 +119,7 @@ class Home extends Component {
               />
             </label>
             <button
+              className="search-button"
               onClick={ (event) => {
                 event.preventDefault();
                 this.requiredProducts();
@@ -126,21 +129,18 @@ class Home extends Component {
             >
               Buscar
             </button>
-          </form>
-          <Link
-            to={ { pathname: '/cart', state: cartList } }
-          >
-            <button
+            <Link
+              className="cart-icon-link"
+              to={ { pathname: '/cart', state: cartList } }
               data-testid="shopping-cart-button"
               type="button"
             >
-              Carrinho
-            </button>
-          </Link>
+              <FaShoppingCart size={ 30 } />
+            </Link>
+          </form>
           { this.conditionRenderProducts(inicialPage, products) }
         </div>
       </div>
-
     );
   }
 }

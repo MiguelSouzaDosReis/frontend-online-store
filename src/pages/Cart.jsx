@@ -31,6 +31,9 @@ class Cart extends Component {
         >
           <button type="button">Voltar</button>
         </Link>
+        <Link to="/checkout">
+          <button data-testid="checkout-products" type="button">Comprar</button>
+        </Link>
       </>
     );
   }

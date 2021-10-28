@@ -44,6 +44,15 @@ class Cart extends Component {
     return (
       <>
         { this.conditionRenderCart() }
+
+        <Link
+          to="/"
+        >
+          <button type="button">Voltar</button>
+        </Link>
+        <Link to="/checkout">
+          <button data-testid="checkout-products" type="button">Comprar</button>
+        </Link>
       </>
     );
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import FormProduct from '../components/FormProduct';
 
 class ProductDetails extends Component {
   constructor() {
@@ -79,6 +80,7 @@ class ProductDetails extends Component {
         >
           Adicionar Item
         </button>
+        <FormProduct />
       </section>
     );
   }

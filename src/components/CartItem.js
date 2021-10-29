@@ -7,7 +7,21 @@ class CartItem extends Component {
 
     this.state = {
       count: 1,
+      isDisabled: false,
     };
+  }
+
+  verifyQuantity = () => {
+    const { product } = this.props;
+    const { count } = this.state;
+    if (count === product.available_quantity) {
+      this.setState({
+        isDisabled: true,
+      });
+    }
+    this.setState({
+      isDisabled: false,
+    });
   }
 
   handleDecrease = () => {
@@ -17,13 +31,17 @@ class CartItem extends Component {
   }
 
   handleIncrease = () => {
-    this.setState((prevState) => ({
-      count: prevState.count + 1,
-    }));
+    const { product } = this.props;
+    const { count } = this.state;
+    if (count < product.available_quantity) {
+      this.setState((prevState) => ({
+        count: prevState.count + 1,
+      }), () => this.verifyQuantity());
+    }
   }
 
   render() {
-    const { count } = this.state;
+    const { count, isDisabled } = this.state;
     const { product } = this.props;
     return (
       <div className="cart-itens-div">
@@ -45,6 +63,7 @@ class CartItem extends Component {
           <h2 data-testid="shopping-cart-product-quantity">{ count }</h2>
         </div>
         <button
+          disabled={ isDisabled }
           className="increase-button"
           data-testid="product-increase-quantity"
           type="button"

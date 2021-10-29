@@ -22,6 +22,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.requiredCategories();
+    this.restoreCartList();
   }
 
   handleChange = (event) => {
@@ -42,7 +43,7 @@ class Home extends Component {
     const filterClick = products.filter((product) => product.id === id);
     this.setState({
       cartList: [...cartList, ...filterClick],
-    });
+    }, () => this.addLocalStorage());
   }
 
   conditionRenderProducts = (inicialPage, products) => {
@@ -72,6 +73,18 @@ class Home extends Component {
         ))}
       </div>
     );
+  }
+
+  addLocalStorage() {
+    const { cartList } = this.state;
+    localStorage.setItem('cartLocalStorage', JSON.stringify(cartList));
+  }
+
+  restoreCartList() {
+    const actualCartList = JSON.parse(localStorage.getItem('cartLocalStorage'));
+    if (actualCartList !== null) {
+      this.setState({ cartList: actualCartList });
+    }
   }
 
   async requiredCategories() {
@@ -136,6 +149,7 @@ class Home extends Component {
               type="button"
             >
               <FaShoppingCart size={ 30 } />
+              <p data-testid="shopping-cart-size">{ cartList.length }</p>
             </Link>
           </form>
           { this.conditionRenderProducts(inicialPage, products) }

@@ -7,7 +7,6 @@ class CardProduct extends Component {
     const { card, handlePurchaseClick, cartList } = this.props;
     const priceItem = (card.price)
       .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
-    // formatação de preço ex( R$: 00,00 );
 
     return (
       <div className="product-card" data-testid="product" key={ card.id }>
@@ -23,6 +22,7 @@ class CardProduct extends Component {
             { priceItem }
           </p>
         </Link>
+        { card.shipping.free_shipping && <p data-testid="free-shipping">Frete grátis</p>}
         <button
           className="add-item-button"
           id={ card.id }

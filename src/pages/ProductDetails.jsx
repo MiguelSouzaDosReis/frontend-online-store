@@ -16,6 +16,7 @@ class ProductDetails extends Component {
   componentDidMount() {
     this.requiredProducts();
     this.funcSet();
+    this.restoreCartList();
   }
 
   handlePurchaseClick = (event) => {
@@ -24,7 +25,19 @@ class ProductDetails extends Component {
     const filterClick = [productDetails].filter((product) => product.id === id);
     this.setState({
       cartList: [...cartList, ...filterClick],
-    });
+    }, () => this.addLocalStorage());
+  }
+
+  addLocalStorage() {
+    const { cartList } = this.state;
+    localStorage.setItem('cartLocalStorage', JSON.stringify(cartList));
+  }
+
+  restoreCartList() {
+    const actualCartList = JSON.parse(localStorage.getItem('cartLocalStorage'));
+    if (actualCartList !== null) {
+      this.setState({ cartList: actualCartList });
+    }
   }
 
   funcSet() {
@@ -44,17 +57,19 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { productDetails, productDetails: { attributes }, cartList } = this.state;
+    const { productDetails: { attributes, id, title, thumbnail, price },
+      cartList,
+    } = this.state;
 
     return (
       <section className="cart-item-div">
-        <h3 data-testid="product-detail-name">{ productDetails.title }</h3>
+        <h3 data-testid="product-detail-name">{ title }</h3>
         <img
           className="img-cart-product"
-          src={ productDetails.thumbnail }
-          alt={ productDetails.title }
+          src={ thumbnail }
+          alt={ title }
         />
-        <p>{ productDetails.price }</p>
+        <p>{ price }</p>
         <ul>
           { attributes && attributes.map((product, index) => (
             <li key={ index }>
@@ -71,9 +86,10 @@ class ProductDetails extends Component {
           >
             Carrinho
           </button>
+          <p data-testid="shopping-cart-size">{ cartList.length }</p>
         </Link>
         <button
-          id={ productDetails.id }
+          id={ id }
           type="button"
           onClick={ this.handlePurchaseClick }
           data-testid="product-detail-add-to-cart"

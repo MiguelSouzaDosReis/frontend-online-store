@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import Categories from '../components/Categories';
 import CardProduct from '../components/CardProduct';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import {
+  getCategories,
+  getProductsFromCategoryAndQuery,
+} from '../services/api';
 
 class Home extends Component {
   constructor() {
@@ -29,22 +32,28 @@ class Home extends Component {
     this.setState({
       inputValue: event.target.value,
     });
-  }
+  };
 
   filterByCategory = (event) => {
-    this.setState({
-      categoryId: event.target.value,
-    }, this.requiredProducts);
-  }
+    this.setState(
+      {
+        categoryId: event.target.value,
+      },
+      this.requiredProducts,
+    );
+  };
 
   handlePurchaseClick = (event) => {
     const { products, cartList } = this.state;
     const { id } = event.target;
     const filterClick = products.filter((product) => product.id === id);
-    this.setState({
-      cartList: [...cartList, ...filterClick],
-    }, () => this.addLocalStorage());
-  }
+    this.setState(
+      {
+        cartList: [...cartList, ...filterClick],
+      },
+      () => this.addLocalStorage(),
+    );
+  };
 
   conditionRenderProducts = (inicialPage, products) => {
     const { cartList } = this.state;
@@ -57,9 +66,7 @@ class Home extends Component {
       );
     }
     if (products.length === 0) {
-      return (
-        <p>Nenhum produto foi encontrado</p>
-      );
+      return <p>Nenhum produto foi encontrado</p>;
     }
     return (
       <div>
@@ -73,7 +80,7 @@ class Home extends Component {
         ))}
       </div>
     );
-  }
+  };
 
   addLocalStorage() {
     const { cartList } = this.state;
@@ -96,7 +103,10 @@ class Home extends Component {
 
   async requiredProducts() {
     const { inputValue, categoryId } = this.state;
-    const response = await getProductsFromCategoryAndQuery(categoryId, inputValue);
+    const response = await getProductsFromCategoryAndQuery(
+      categoryId,
+      inputValue,
+    );
     this.setState({
       products: response.results,
       inicialPage: false,
@@ -119,40 +129,40 @@ class Home extends Component {
           </ul>
         </aside>
         <div className="Search-box">
-          <form action="">
-            <label className="divbusca" htmlFor="input">
-              <input
-                className="input-search"
-                data-testid="query-input"
-                onChange={ this.handleChange }
-                value={ inputValue }
-                id="input"
-                type="text"
-                name="inputValue"
-              />
-            </label>
-            <button
-              className="search-button"
-              onClick={ (event) => {
-                event.preventDefault();
-                this.requiredProducts();
-              } }
-              data-testid="query-button"
-              type="submit"
-            >
-              Buscar
-            </button>
-            <Link
-              className="cart-icon-link"
-              to={ { pathname: '/cart', state: cartList } }
-              data-testid="shopping-cart-button"
-              type="button"
-            >
-              <FaShoppingCart size={ 30 } />
-              <p data-testid="shopping-cart-size">{ cartList.length }</p>
-            </Link>
-          </form>
-          { this.conditionRenderProducts(inicialPage, products) }
+          <label className="divbusca" htmlFor="input">
+            <input
+              className="input-search"
+              data-testid="query-input"
+              onChange={ this.handleChange }
+              value={ inputValue }
+              id="input"
+              type="text"
+              name="inputValue"
+            />
+          </label>
+          <button
+            className="search-button"
+            onClick={ (event) => {
+              event.preventDefault();
+              this.requiredProducts();
+            } }
+            data-testid="query-button"
+            type="submit"
+          >
+            Buscar
+          </button>
+          <Link
+            className="cart-icon-link"
+            to={ { pathname: '/cart', state: cartList } }
+            data-testid="shopping-cart-button"
+            type="button"
+          >
+            <FaShoppingCart size={ 30 } />
+            <span className="number-cart-list" data-testid="shopping-cart-size">
+              {cartList.length}
+            </span>
+          </Link>
+          {this.conditionRenderProducts(inicialPage, products)}
         </div>
       </div>
     );

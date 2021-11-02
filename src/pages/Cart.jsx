@@ -42,18 +42,26 @@ class Cart extends Component {
 
   render() {
     return (
-      <>
-        { this.conditionRenderCart() }
-
+      <div className="cart">
         <Link
           to="/"
         >
-          <button type="button">Voltar</button>
+          <FaArrowCircleLeft size="30" />
+          <p size="30">Voltar </p>
         </Link>
+        <h2>CARRINHO DE COMPRAS</h2>
+        { this.conditionRenderCart() }
+        <h3>Valor total da Compra: R$ xx,xx </h3>
         <Link to="/checkout">
-          <button data-testid="checkout-products" type="button">Comprar</button>
+          <button
+            className="checkout-button"
+            data-testid="checkout-products"
+            type="button"
+          >
+            Finalizar Compra
+          </button>
         </Link>
-      </>
+      </div>
     );
   }
 }

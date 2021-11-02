@@ -33,7 +33,7 @@ li {
 
 .input-search {
   border-radius: 20px;
-  margin-left: 170px;
+  margin-left: 150px;
   margin-top: 20px;
   padding: 5px;
   width: 60%;
@@ -42,7 +42,7 @@ li {
 .search-button {
   background: cadetblue;
   border: none;
-  border-radius: 0 7px 7px 0;
+  border-radius: 7px;
   cursor: pointer;
   font-weight: 777;
   height: 32px;
@@ -54,6 +54,13 @@ li {
   color: cadetblue;
   margin-left: 50px;
   margin-top: 40px;
+}
+
+.number-cart-list {
+  background-color: red;
+  border-radius: 50%;
+  color: black;
+  font-size: 20px;
 }
 
 .text-home {
@@ -81,6 +88,12 @@ li {
 }
 
 /* area do carrinho com itens */
+.cart {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .cart-itens-div1 {
   margin: auto;
   width: 40%;
@@ -98,6 +111,7 @@ img {
   width: 100px;
 }
 
+
 .quantity {
   margin: 40px 5px;
   text-align: center;
@@ -106,4 +120,63 @@ img {
 .increase-button, .decrease-button, h1 {
   height: 20px;
   margin: auto;
+}
+
+/* area do checkout */
+.review-products {
+  background: rgb(230, 228, 228);
+  border: 1px solid cadetblue;
+  margin: auto;
+  padding: 15px;
+  width: 80%;
+}
+
+.clients-Data {
+  background: rgb(230, 228, 228);
+  border: 1px solid cadetblue;
+  display: flex;
+  flex-wrap: wrap;
+  height: 200px;
+  margin: auto;
+  margin-top: 15px;
+  padding: 15px;
+  width: 80%;
+}
+
+.clients-Data input, select {
+  background-color: white;
+  border: none;
+  border-radius: 7px;
+  height: 30px;
+  margin: 2px 3px;
+}
+
+.form-of-payment {
+  background: rgb(230, 228, 228);
+  border: 1px solid cadetblue;
+  margin: auto;
+  margin-top: 15px;
+  padding: 15px;
+  width: 80%;
+}
+
+.form-of-payment input {
+  margin: auto 20px;
+  text-align: center;
+}
+
+.buy-button, .checkout-button {
+  background: cadetblue;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 777;
+  height: 32px;
+  margin-left: 130px;
+  margin-top: 20px;
+  width: 30%;
+}
+
+.buy-button:hover, .checkout-button:hover {
+  background: rgb(10, 111, 141);
 }

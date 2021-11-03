@@ -8,6 +8,7 @@
   display: flex;
 }
 
+/* area do menu lateral de categorias */
 .aside {
   background-color: cadetblue;
   height: 630px;
@@ -22,6 +23,7 @@ li {
   padding: 0.2px;
 }
 
+/* area da caixa de pesquisa da home */
 .Search-box {
   border: solid 2px cadetblue;
   border-radius: 10px;
@@ -82,6 +84,7 @@ li {
   margin-top: 8px;
 }
 
+/* area da page carrinho vazio */
 .empty-cart-div {
   margin-top: 50px;
   text-align: center;
@@ -92,6 +95,11 @@ li {
   align-items: center;
   display: flex;
   flex-direction: column;
+}
+
+.cart:nth-child( 1 ) {
+  display: flex;
+  justify-content: start;
 }
 
 .cart-itens-div1 {
@@ -180,3 +188,83 @@ img {
 .buy-button:hover, .checkout-button:hover {
   background: rgb(10, 111, 141);
 }
+
+/* area do product details */
+.product-details {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  padding: 10px;
+}
+
+.title-thumb-price-productdetail {
+  border: 2px solid cadetblue;
+  margin-left: 30px;
+  text-align: center;
+  width: 500px;
+}
+
+.attributes {
+  border: 2px solid cadetblue;
+  margin-left: 30px;
+  width: 500px;
+}
+
+.attributes h3 {
+  text-align: center;
+}
+
+.cart-and-add-item {
+  display: flex;
+  margin: auto;
+  margin-top: 20px;
+  width: 50%;
+}
+
+.add-cart-button {
+  background: cadetblue;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 777;
+  height: 32px;
+  margin-left: 20px;
+  width: 30%;
+}
+
+.rating {
+  border: 2px solid cadetblue;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  padding: 30px;
+  width: 100%;
+}
+
+.form-rating {
+  margin: auto;
+  margin-top: 20px;
+  width: 500px;
+}
+
+.textarea {
+  margin-left: 28px;
+  margin-top: 10px;
+}
+
+.button-rate {
+  background: cadetblue;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 777;
+  height: 32px;
+  margin-left: 170px;
+  margin-top: 20px;
+  width: 30%;
+}
+
+.button-rate:hover {
+  background: rgb(10, 111, 141);
+}
+

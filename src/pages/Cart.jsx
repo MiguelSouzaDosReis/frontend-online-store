@@ -51,7 +51,7 @@ class Cart extends Component {
         </Link>
         <h2>CARRINHO DE COMPRAS</h2>
         { this.conditionRenderCart() }
-        <h3>Valor total da Compra: R$ xx,xx </h3>
+        <h3>Valor total da Compra: R$ XX,XX </h3>
         <Link to="/checkout">
           <button
             className="checkout-button"

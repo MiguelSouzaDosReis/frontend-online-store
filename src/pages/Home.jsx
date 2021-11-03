@@ -118,6 +118,7 @@ class Home extends Component {
     return (
       <div className="body">
         <aside className="aside">
+          <h3>ESCOLHA UMA CATEGORIA:</h3>
           <ul>
             {categories.map((category) => (
               <Categories

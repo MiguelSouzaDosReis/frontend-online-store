@@ -13,14 +13,32 @@
   background-color: cadetblue;
   height: 630px;
   margin-top: 20px;
-  padding: 3px;
   width: 400px;
 }
 
-li {
+.aside h3 {
+  text-align: center;
+}
+
+.aside ul li {
+  color: black;
+  display: block;
   list-style-type: none;
-  margin-top: 1px;
-  padding: 0.2px;
+  padding: 0.4px;
+  position: relative;
+}
+
+.aside ul li:hover {
+  background-color: rgb(10, 111, 141);
+}
+
+.aside label {
+  cursor: pointer;
+}
+
+.input-category {
+  cursor: pointer;
+  margin-right: 5px;
 }
 
 /* area da caixa de pesquisa da home */
@@ -70,7 +88,7 @@ li {
 }
 
 .product-card {
-  border: 1px solid black;
+  border: 1px solid cadetblue;
   display: inline-block;
   flex-wrap: wrap;
   font-size: 13px;

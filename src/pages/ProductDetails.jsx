@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { FaArrowCircleLeft, FaShoppingCart } from 'react-icons/fa';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import FormProduct from '../components/FormProduct';
 
@@ -62,40 +63,61 @@ class ProductDetails extends Component {
     } = this.state;
 
     return (
-      <section className="cart-item-div">
-        <h3 data-testid="product-detail-name">{ title }</h3>
-        <img
-          className="img-cart-product"
-          src={ thumbnail }
-          alt={ title }
-        />
-        <p>{ price }</p>
-        <ul>
-          { attributes && attributes.map((product, index) => (
-            <li key={ index }>
-              { `${product.name}:${product.value_name}` }
-            </li>
-          ))}
-        </ul>
-        <Link
-          to={ { pathname: '/cart', state: cartList } }
-        >
-          <button
+      <section className="product-details">
+        <div className="back-link">
+          <Link
+            to="/"
+          >
+            <FaArrowCircleLeft size="30" />
+            <p size="30">Voltar </p>
+          </Link>
+        </div>
+        <div className="title-thumb-price-productdetail">
+          <h3 data-testid="product-detail-name">{ title }</h3>
+          <img
+            className="img-cart-product"
+            src={ thumbnail }
+            alt={ title }
+          />
+          <p>
+            R$
+            { price }
+          </p>
+        </div>
+        <div className="attributes">
+          <h3> Especificações Técnicas</h3>
+          <ul>
+            { attributes && attributes.map((product, index) => (
+              <li key={ index }>
+                { `${product.name}:${product.value_name}` }
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="cart-and-add-item">
+          <Link
+            to={ { pathname: '/cart', state: cartList } }
             data-testid="shopping-cart-button"
             type="button"
           >
-            Carrinho
+            <FaShoppingCart size={ 30 } />
+            <span
+              className="number-cart-list"
+              data-testid="shopping-cart-size"
+            >
+              { cartList.length }
+            </span>
+          </Link>
+          <button
+            className="add-cart-button"
+            id={ id }
+            type="button"
+            onClick={ this.handlePurchaseClick }
+            data-testid="product-detail-add-to-cart"
+          >
+            Adicionar ao carrinho
           </button>
-          <p data-testid="shopping-cart-size">{ cartList.length }</p>
-        </Link>
-        <button
-          id={ id }
-          type="button"
-          onClick={ this.handlePurchaseClick }
-          data-testid="product-detail-add-to-cart"
-        >
-          Adicionar Item
-        </button>
+        </div>
         <FormProduct />
       </section>
     );

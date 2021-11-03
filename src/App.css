@@ -8,20 +8,40 @@
   display: flex;
 }
 
+/* area do menu lateral de categorias */
 .aside {
   background-color: cadetblue;
   height: 630px;
   margin-top: 20px;
-  padding: 3px;
   width: 400px;
 }
 
-li {
-  list-style-type: none;
-  margin-top: 1px;
-  padding: 0.2px;
+.aside h3 {
+  text-align: center;
 }
 
+.aside ul li {
+  color: black;
+  display: block;
+  list-style-type: none;
+  padding: 0.4px;
+  position: relative;
+}
+
+.aside ul li:hover {
+  background-color: rgb(10, 111, 141);
+}
+
+.aside label {
+  cursor: pointer;
+}
+
+.input-category {
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+/* area da caixa de pesquisa da home */
 .Search-box {
   border: solid 2px cadetblue;
   border-radius: 10px;
@@ -33,7 +53,7 @@ li {
 
 .input-search {
   border-radius: 20px;
-  margin-left: 170px;
+  margin-left: 150px;
   margin-top: 20px;
   padding: 5px;
   width: 60%;
@@ -42,7 +62,7 @@ li {
 .search-button {
   background: cadetblue;
   border: none;
-  border-radius: 0 7px 7px 0;
+  border-radius: 7px;
   cursor: pointer;
   font-weight: 777;
   height: 32px;
@@ -56,12 +76,19 @@ li {
   margin-top: 40px;
 }
 
+.number-cart-list {
+  background-color: red;
+  border-radius: 50%;
+  color: black;
+  font-size: 20px;
+}
+
 .text-home {
   margin-top: 20px;
 }
 
 .product-card {
-  border: 1px solid black;
+  border: 1px solid cadetblue;
   display: inline-block;
   flex-wrap: wrap;
   font-size: 13px;
@@ -75,12 +102,24 @@ li {
   margin-top: 8px;
 }
 
+/* area da page carrinho vazio */
 .empty-cart-div {
   margin-top: 50px;
   text-align: center;
 }
 
 /* area do carrinho com itens */
+.cart {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart:nth-child( 1 ) {
+  display: flex;
+  justify-content: start;
+}
+
 .cart-itens-div1 {
   margin: auto;
   width: 40%;
@@ -98,6 +137,7 @@ img {
   width: 100px;
 }
 
+
 .quantity {
   margin: 40px 5px;
   text-align: center;
@@ -107,3 +147,142 @@ img {
   height: 20px;
   margin: auto;
 }
+
+/* area do checkout */
+.review-products {
+  background: rgb(230, 228, 228);
+  border: 1px solid cadetblue;
+  margin: auto;
+  padding: 15px;
+  width: 80%;
+}
+
+.clients-Data {
+  background: rgb(230, 228, 228);
+  border: 1px solid cadetblue;
+  display: flex;
+  flex-wrap: wrap;
+  height: 200px;
+  margin: auto;
+  margin-top: 15px;
+  padding: 15px;
+  width: 80%;
+}
+
+.clients-Data input, select {
+  background-color: white;
+  border: none;
+  border-radius: 7px;
+  height: 30px;
+  margin: 2px 3px;
+}
+
+.form-of-payment {
+  background: rgb(230, 228, 228);
+  border: 1px solid cadetblue;
+  margin: auto;
+  margin-top: 15px;
+  padding: 15px;
+  width: 80%;
+}
+
+.form-of-payment input {
+  margin: auto 20px;
+  text-align: center;
+}
+
+.buy-button, .checkout-button {
+  background: cadetblue;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 777;
+  height: 32px;
+  margin-left: 130px;
+  margin-top: 20px;
+  width: 30%;
+}
+
+.buy-button:hover, .checkout-button:hover {
+  background: rgb(10, 111, 141);
+}
+
+/* area do product details */
+.product-details {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  padding: 10px;
+}
+
+.title-thumb-price-productdetail {
+  border: 2px solid cadetblue;
+  margin-left: 30px;
+  text-align: center;
+  width: 500px;
+}
+
+.attributes {
+  border: 2px solid cadetblue;
+  margin-left: 30px;
+  width: 500px;
+}
+
+.attributes h3 {
+  text-align: center;
+}
+
+.cart-and-add-item {
+  display: flex;
+  margin: auto;
+  margin-top: 20px;
+  width: 50%;
+}
+
+.add-cart-button {
+  background: cadetblue;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 777;
+  height: 32px;
+  margin-left: 20px;
+  width: 30%;
+}
+
+.rating {
+  border: 2px solid cadetblue;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  padding: 30px;
+  width: 100%;
+}
+
+.form-rating {
+  margin: auto;
+  margin-top: 20px;
+  width: 500px;
+}
+
+.textarea {
+  margin-left: 28px;
+  margin-top: 10px;
+}
+
+.button-rate {
+  background: cadetblue;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 777;
+  height: 32px;
+  margin-left: 170px;
+  margin-top: 20px;
+  width: 30%;
+}
+
+.button-rate:hover {
+  background: rgb(10, 111, 141);
+}
+

@@ -3,15 +3,18 @@ import React, { Component } from 'react';
 class ClientsData extends Component {
   render() {
     return (
-      <div>
-        <h3>Informações do Comprador</h3>
-        <form>
+      <div className="clients-Data">
+        <h3>
+          Informações do Comprador
+        </h3>
+        <form className="clients-data-form">
           <label htmlFor="name-input">
             <input
               data-testid="checkout-fullname"
               id="name-input"
               type="text"
               placeholder="Nome Completo"
+              size="43.8"
             />
           </label>
           <label htmlFor="email-input">
@@ -20,6 +23,7 @@ class ClientsData extends Component {
               id="email-input"
               type="email"
               placeholder="E-mail"
+              size="30"
             />
           </label>
           <label htmlFor="cpf-input">
@@ -29,6 +33,7 @@ class ClientsData extends Component {
               type="text"
               maxLength="11"
               placeholder="CPF"
+              size="14"
             />
           </label>
           <label htmlFor="phone-input">
@@ -55,13 +60,7 @@ class ClientsData extends Component {
               id="adress-input"
               type="text"
               placeholder="Endereço"
-            />
-          </label>
-          <label htmlFor="complemento-input">
-            <input
-              id="complemento-input"
-              type="text"
-              placeholder="Complemento"
+              size="47"
             />
           </label>
           <label htmlFor="numero-input">
@@ -69,6 +68,13 @@ class ClientsData extends Component {
               id="numero-input"
               type="number"
               placeholder="Numero"
+            />
+          </label>
+          <label htmlFor="complemento-input">
+            <input
+              id="complemento-input"
+              type="text"
+              placeholder="Complemento"
             />
           </label>
           <label htmlFor="cidade-input">

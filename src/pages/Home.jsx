@@ -8,6 +8,9 @@ import {
   getProductsFromCategoryAndQuery,
 } from '../services/api';
 
+const CARDS_PER_PAGE = 10; // Número de cards a serem exibidos por página
+
+
 class Home extends Component {
   constructor() {
     super();
@@ -19,6 +22,7 @@ class Home extends Component {
       categoryId: '',
       inicialPage: true,
       cartList: [],
+      currentPage: 1,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -43,6 +47,12 @@ class Home extends Component {
     );
   };
 
+  getTotalPages = () => {
+    const { products } = this.state;
+    return Math.ceil(products.length / CARDS_PER_PAGE);
+  };
+
+
   handlePurchaseClick = (event) => {
     const { products, cartList } = this.state;
     const { id } = event.target;
@@ -56,8 +66,12 @@ class Home extends Component {
   };
 
   conditionRenderProducts = (inicialPage, products) => {
-    const { cartList } = this.state;
-
+    const { cartList, currentPage } = this.state;
+    const totalPages = this.getTotalPages();
+    const startIndex = (currentPage - 1) * CARDS_PER_PAGE;
+    const endIndex = startIndex + CARDS_PER_PAGE;
+    const currentCards = products.slice(startIndex, endIndex);
+  
     if (inicialPage) {
       return (
         <p className="text-home">
@@ -65,22 +79,45 @@ class Home extends Component {
         </p>
       );
     }
-    if (products.length === 0) {
+    if (currentCards.length === 0) {
       return <p>Nenhum produto foi encontrado</p>;
     }
     return (
       <div>
-        {products.map((card) => (
+        {currentCards.map((card) => (
           <CardProduct
-            key={ card.id }
-            card={ card }
-            handlePurchaseClick={ this.handlePurchaseClick }
-            cartList={ cartList }
+            key={card.id}
+            card={card}
+            handlePurchaseClick={this.handlePurchaseClick}
+            cartList={cartList}
           />
         ))}
+        {totalPages > 1 && (
+          <div>
+            <button onClick={this.goToPreviousPage} disabled={currentPage === 1}>
+              Página anterior
+            </button>
+            <button onClick={this.goToNextPage} disabled={currentPage === totalPages}>
+              Próxima página
+            </button>
+          </div>
+        )}
       </div>
     );
   };
+
+  goToPreviousPage = () => {
+    this.setState((prevState) => ({
+      currentPage: prevState.currentPage - 1,
+    }));
+  };
+  
+  goToNextPage = () => {
+    this.setState((prevState) => ({
+      currentPage: prevState.currentPage + 1,
+    }));
+  };
+  
 
   addLocalStorage() {
     const { cartList } = this.state;

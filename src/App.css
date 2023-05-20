@@ -4,6 +4,8 @@
   padding: auto;
 }
 
+
+
 .body {
   display: flex;
 }
@@ -11,13 +13,14 @@
 /* area do menu lateral de categorias */
 .aside {
   background-color: cadetblue;
-  height: 730px;
-  margin-top: 20px;
+  height: 100%;
   width: 400px;
 }
 
+
 .aside h3 {
   text-align: center;
+  margin: 10px;
 }
 
 .aside ul li {
@@ -26,6 +29,7 @@
   list-style-type: none;
   padding: 0.4px;
   position: relative;
+  height: 2.94vh;
 }
 
 .aside ul li:hover {
@@ -42,13 +46,30 @@
 }
 
 /* area da caixa de pesquisa da home */
+
+.product-card {
+  border: 1px solid cadetblue;
+  display: inline-block;
+  flex-wrap: wrap;
+  font-size: 13px;
+  margin-top: 5px;
+  overflow-x: auto;
+  width: 220px;
+  height: 250px;
+}
+
 .Search-box {
   border: solid 2px cadetblue;
   border-radius: 10px;
-  height: 630px;
   margin: 20px;
   text-align: center;
   width: 100%;
+}
+
+
+.linkCard{
+  text-decoration: none;
+  color: black;
 }
 
 .input-search {
@@ -72,13 +93,15 @@
 
 .cart-icon-link {
   color: cadetblue;
-  margin-left: 50px;
-  margin-top: 40px;
+  margin-left: 20px;
+  position: relative;
+  top: 10px;
+  text-decoration: none;
 }
 
 .number-cart-list {
   background-color: red;
-  border-radius: 50%;
+  border-radius: 60%;
   color: black;
   font-size: 20px;
 }
@@ -87,19 +110,22 @@
   margin-top: 20px;
 }
 
-.product-card {
-  border: 1px solid cadetblue;
-  display: inline-block;
-  flex-wrap: wrap;
-  font-size: 13px;
-  height: 185px;
-  margin-top: 5px;
-  overflow-x: auto;
-  width: 220px;
+.add-item-button {
+  background: cadetblue;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  height: 32px;
+  padding: 6px 12px;
+  transition: background-color 0.3s ease;
+  width: 180px;
+  margin-top: 10px;
 }
 
-.add-item-button {
-  margin-top: 8px;
+.add-item-button:hover {
+  background-color: rgb(10, 111, 141);
 }
 
 /* area da page carrinho vazio */
@@ -117,7 +143,6 @@
 
 .cart:nth-child( 1 ) {
   display: flex;
-  justify-content: start;
 }
 
 .cart-itens-div1 {
@@ -131,7 +156,18 @@
   margin: auto;
   margin-left: 100px;
   width: 80%;
+  text-decoration: none;
 }
+
+.free-shipping {
+  color: rgb(109, 160, 95);
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 5px;
+}
+
 
 img {
   width: 100px;
@@ -286,3 +322,12 @@ img {
   background: rgb(10, 111, 141);
 }
 
+@media (max-width: 768px) {
+  .aside {
+    width: 100%; /* Altera a largura para ocupar toda a largura disponível */
+  }
+
+  .aside ul li {
+    height: auto; /* Altera a altura para ser definida automaticamente pelo conteúdo */
+  }
+}

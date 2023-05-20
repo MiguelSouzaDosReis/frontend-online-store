@@ -28,7 +28,6 @@ class FormProduct extends Component {
           <textarea
             className="textarea"
             placeholder="Mensagem (optional)"
-            data-testid="product-detail-evaluation"
             rows="6"
             cols="50"
           />

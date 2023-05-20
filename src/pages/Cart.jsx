@@ -6,6 +6,59 @@ import { BsFillCartXFill } from 'react-icons/bs';
 import CartItem from '../components/CartItem';
 
 class Cart extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      totalPrice: 0,
+    };
+  }
+
+  componentDidMount() {
+    this.updateTotalPrice();
+  }
+
+  updateTotalPrice = () => {
+    const { location: { state } } = this.props;
+    let totalPrice = 0;
+
+    state.forEach((product) => {
+      totalPrice += product.price;
+    });
+
+    this.setState({ totalPrice });
+  };
+  
+
+
+  calculateTotalPrice = () => {
+    const { location: { state } } = this.props;
+    let totalPrice = 0;
+  
+    state.forEach((product) => {
+      totalPrice += product.price * product.count;
+    });
+  
+    return totalPrice;
+  };
+
+
+  handleIncreasePrice = (price) => {
+    this.setState((prevState) => ({
+      totalPrice: prevState.totalPrice + price,
+    }));
+  };
+
+  handleDecreasePrice = (price) => {
+    const { totalPrice } = this.state;
+  
+    if (totalPrice - price >= 0) {
+      this.setState((prevState) => ({
+        totalPrice: prevState.totalPrice - price,
+      }));
+    }
+  };
+
   conditionRenderCart = () => {
     const { location: { state } } = this.props;
     if (state.length === 0) {
@@ -21,7 +74,6 @@ class Cart extends Component {
             <BsFillCartXFill size="300" />
             <p
               className="empty-cart-message"
-              data-testid="shopping-cart-empty-message"
             >
               Seu carrinho está vazio
             </p>
@@ -31,16 +83,25 @@ class Cart extends Component {
     }
 
     return (
-      state && state.map((product) => (
+      state &&
+      state.map((product) => (
         <CartItem
-          key={ product.id }
-          product={ product }
+          key={product.id}
+          product={product}
+          handleIncreasePrice={this.handleIncreasePrice}
+          handleDecreasePrice={this.handleDecreasePrice}
         />
       ))
     );
-  }
+  };
+
 
   render() {
+    const { totalPrice } = this.state;
+
+    const formattedTotalPrice = isNaN(totalPrice) ? 0 : totalPrice.toFixed(2);
+
+
     return (
       <div className="cart">
         <Link
@@ -51,11 +112,10 @@ class Cart extends Component {
         </Link>
         <h2>CARRINHO DE COMPRAS</h2>
         { this.conditionRenderCart() }
-        <h3>Valor total da Compra: R$ XX,XX </h3>
+        <h3>Valor total da Compra: R$ {formattedTotalPrice} </h3>
         <Link to="/checkout">
           <button
             className="checkout-button"
-            data-testid="checkout-products"
             type="button"
           >
             Finalizar Compra

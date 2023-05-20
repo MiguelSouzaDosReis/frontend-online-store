@@ -9,10 +9,10 @@ class CardProduct extends Component {
       .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 
     return (
-      <div className="product-card" data-testid="product" key={ card.id }>
+      <div className="product-card"  key={ card.id }>
         <Link
-          data-testid="product-detail-link"
           to={ { pathname: `/product/${card.category_id}/${card.id}`, state: cartList } }
+          className="linkCard"
         >
           <p>{card.title}</p>
           <img width="100" src={ card.thumbnail } alt={ card.title } />
@@ -22,13 +22,12 @@ class CardProduct extends Component {
             { priceItem }
           </p>
         </Link>
-        { card.shipping.free_shipping && <p data-testid="free-shipping">Frete grátis</p>}
+        { card.shipping.free_shipping && <p className="free-shipping">Frete grátis</p>}
         <button
           className="add-item-button"
           id={ card.id }
           type="button"
           onClick={ handlePurchaseClick }
-          data-testid="product-add-to-cart"
         >
           Adicionar ao carrinho
         </button>

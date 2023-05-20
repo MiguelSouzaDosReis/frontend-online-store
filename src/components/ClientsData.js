@@ -10,7 +10,6 @@ class ClientsData extends Component {
         <form className="clients-data-form">
           <label htmlFor="name-input">
             <input
-              data-testid="checkout-fullname"
               id="name-input"
               type="text"
               placeholder="Nome Completo"
@@ -19,7 +18,6 @@ class ClientsData extends Component {
           </label>
           <label htmlFor="email-input">
             <input
-              data-testid="checkout-email"
               id="email-input"
               type="email"
               placeholder="E-mail"
@@ -28,7 +26,6 @@ class ClientsData extends Component {
           </label>
           <label htmlFor="cpf-input">
             <input
-              data-testid="checkout-cpf"
               id="cpf-input"
               type="text"
               maxLength="11"
@@ -38,7 +35,6 @@ class ClientsData extends Component {
           </label>
           <label htmlFor="phone-input">
             <input
-              data-testid="checkout-phone"
               id="phone-input"
               type="text"
               maxLength="12"
@@ -47,7 +43,6 @@ class ClientsData extends Component {
           </label>
           <label htmlFor="cep-input">
             <input
-              data-testid="checkout-cep"
               id="cep-input"
               type="text"
               maxLength="8"
@@ -56,7 +51,6 @@ class ClientsData extends Component {
           </label>
           <label htmlFor="adress-input">
             <input
-              data-testid="checkout-address"
               id="adress-input"
               type="text"
               placeholder="Endereço"

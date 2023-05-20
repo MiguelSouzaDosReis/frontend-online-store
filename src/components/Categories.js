@@ -9,7 +9,6 @@ class Categories extends Component {
         <label htmlFor={ category.id }>
           <input
             className="input-category"
-            data-testid="category"
             id={ category.id }
             name="category"
             value={ category.id }

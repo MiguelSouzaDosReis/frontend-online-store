@@ -60,7 +60,7 @@ class Home extends Component {
 
     if (inicialPage) {
       return (
-        <p className="text-home" data-testid="home-initial-message">
+        <p className="text-home">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
       );
@@ -133,7 +133,6 @@ class Home extends Component {
           <label className="divbusca" htmlFor="input">
             <input
               className="input-search"
-              data-testid="query-input"
               onChange={ this.handleChange }
               value={ inputValue }
               id="input"
@@ -147,7 +146,6 @@ class Home extends Component {
               event.preventDefault();
               this.requiredProducts();
             } }
-            data-testid="query-button"
             type="submit"
           >
             Buscar
@@ -155,11 +153,10 @@ class Home extends Component {
           <Link
             className="cart-icon-link"
             to={ { pathname: '/cart', state: cartList } }
-            data-testid="shopping-cart-button"
             type="button"
           >
             <FaShoppingCart size={ 30 } />
-            <span className="number-cart-list" data-testid="shopping-cart-size">
+            <span className="number-cart-list">
               {cartList.length}
             </span>
           </Link>
